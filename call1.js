@@ -43,3 +43,9 @@ function getGrade(score, callback){
 }
 
 getGrade(85, trener)
+
+function fun(){
+    console.log('Sprawdzamy działanie')
+}
+
+setInterval(fun, 500);
