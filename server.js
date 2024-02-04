@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import hbs from 'hbs';
 
 let app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -22,5 +23,11 @@ app.get('/bad',(req,res)=>{
     res.send({errorMessage: 'niepoprawny adres'});
 });
 
+app.get('/about',(req,res)=>{
+    res.render('about.hbs');
+});
+
+
 app.listen(3333);
 app.use(express.static(path.join(__dirname,'public')));
+app.set('view engine', 'hbs');
