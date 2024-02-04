@@ -1,6 +1,10 @@
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 let app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.get('/',(req,res)=>{
     res.send('<h5>Witaj na moim serwerze</h5>');
@@ -19,3 +23,4 @@ app.get('/bad',(req,res)=>{
 });
 
 app.listen(3333);
+app.use(express.static(path.join(__dirname,'public')));
