@@ -24,7 +24,10 @@ app.get('/bad',(req,res)=>{
 });
 
 app.get('/about',(req,res)=>{
-    res.render('about.hbs');
+    res.render('about.hbs',{
+        pageTitle: 'O nas',
+        currentYear: new Date().getFullYear()
+    });
 });
 
 
