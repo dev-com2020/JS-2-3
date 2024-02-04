@@ -1,4 +1,5 @@
-const request = require('request');
+// const request = require('request');
+import request from 'request';
 
 request({
     url:'https://api.openweathermap.org/data/2.5/weather?lat=51.03800514094336&lon=20.421424258406837&appid=114f96ab7fa79786add85b6f90b65ae7',
