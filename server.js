@@ -8,6 +8,19 @@ let app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+app.use((req, res, next) => {
+    let now = new Date().toString();
+    let log = `${now}: ${req.method}: ${req.url}`;
+    console.log(log);
+    fs.appendFile('server.log', log + '\n', (err) => {
+        if (err) {
+            console.log('Zapis do loga nie jest możliwy');
+        }
+    });
+    next();
+});
+
+
 app.get('/', (req, res) => {
     res.send('<h5>Witaj na moim serwerze</h5>');
 });
@@ -39,16 +52,4 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 hbs.registerHelper('upper', (text) => {
     return text.toUpperCase();
-});
-
-app.use((req, res, next) => {
-    let now = new Date().toString();
-    let log = `${now}: ${req.method}: ${req.url}`;
-    console.log(log);
-    fs.appendFile('server.log', log + '\n', (err) => {
-        if (err) {
-            console.log('Zapis do loga nie jest możliwy');
-        }
-    });
-    next();
 });
