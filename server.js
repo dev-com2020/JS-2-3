@@ -26,6 +26,7 @@ app.get('/bad',(req,res)=>{
 app.get('/about',(req,res)=>{
     res.render('about.hbs',{
         pageTitle: 'O nas',
+        welcomeMessage: 'witam na mojej stronie',
         currentYear: new Date().getFullYear()
     });
 });
@@ -34,3 +35,7 @@ app.get('/about',(req,res)=>{
 app.listen(3333);
 app.use(express.static(path.join(__dirname,'public')));
 app.set('view engine', 'hbs');
+hbs.registerPartials(path.join(__dirname,'views/partials'));
+hbs.registerHelper('upper',(text) => {
+    return text.toUpperCase();
+});
